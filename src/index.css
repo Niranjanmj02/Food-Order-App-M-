@@ -9,7 +9,7 @@ body {
   font-family: 'Raleway', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(#29251c, #2c2306);
+  background: linear-gradient(#dfddd8, #2c2306);
   color: #d9e2f1;
   min-height: 100vh;
 }
@@ -32,12 +32,13 @@ body {
   height: 4rem;
   object-fit: contain;
   border-radius: 50%;
-  border: 2px solid #ffc404;
+  border: 2px solid #000000;
 }
 
 #main-header button {
   font-size: 1.5rem;
   font-family: 'Lato', sans-serif;
+  
 }
 
 h1 {
@@ -45,7 +46,7 @@ h1 {
   font-weight: 700;
   font-size: 2rem;
   margin: 0;
-  color: #ffc404;
+  color: #100f0f;
   letter-spacing: 0.2rem;
   text-transform: uppercase;
 }
@@ -62,7 +63,7 @@ h1 {
 }
 
 .meal-item {
-  background-color: #1d1a16;
+  background-color: #c65d5d;
   border-radius: 1rem;
   overflow: hidden;
   text-align: center;
@@ -106,6 +107,30 @@ h1 {
 .meal-item-actions {
   margin-bottom: 1.5rem;
 }
+/* meal-item.css */
+.meal-item-actions button {
+  background-color: #010101; /* Example green background */
+  color: white;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem; 
+}
+
+.meal-item-actions button:hover {
+  background-color: #be8c37; /* Darker green on hover */
+}
+
+.meal-item-actions button:first-of-type {
+  margin-right: 1rem; /* Space between the buttons */
+}
+
+.meal-item-actions button[disabled] {
+  background-color: #ccc; /* Grayed-out for disabled button */
+  cursor: not-allowed;
+}
+
 
 .cart h2 {
   margin: 1rem 0;
@@ -124,12 +149,12 @@ h1 {
 }
 
 .modal-actions .text-button {
-  color: #1d1a16;
+  color: #312e2c;
 }
 
 .modal-actions .text-button:hover,
 .modal-actions .text-button:active {
-  color: #312c1d;
+  color: #312f2b;
 }
 
 .cart-total {
@@ -138,7 +163,7 @@ h1 {
   margin: 2rem 0;
   font-size: 1.15rem;
   font-weight: bold;
-  color: #46443c;
+  color: #171716;
 }
 
 .cart-item {
@@ -165,8 +190,8 @@ h1 {
   height: 1.5rem;
   border-radius: 50%;
   border: none;
-  background-color: #312c1d;
-  color: #ffc404;
+  background-color: #dbd8d0;
+  color: #171616;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -175,7 +200,7 @@ h1 {
 .cart-item-actions button:hover,
 .cart-item-actions button:active {
   background-color: #1d1a16;
-  color: #ffab04;
+  color: #161615;
 }
 
 .control {
@@ -226,12 +251,12 @@ h1 {
   cursor: pointer;
   background-color: transparent;
   border: none;
-  color: #ffc404;
+  color: #060606;
 }
 
 .text-button:hover,
 .text-button:active {
-  color: #ffab04;
+  color: #c78f1f;
 }
 
 .modal {

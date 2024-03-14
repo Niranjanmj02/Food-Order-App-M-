@@ -1,3 +1,5 @@
+import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Meals from './components/Meals';
 import { CartContextProvider } from './store/CartContext';
@@ -5,18 +7,31 @@ import { UserProgressProvider } from './store/UserProgressContext';
 import Cart from './components/Cart';
 import Checkout from './components/Checkout';
 import Login from './components/Login';
+// import Subscriptions from './components/Sub'
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Simulating authentication
+
   return (
-    
-    <UserProgressProvider>
-    <CartContextProvider>
-     <Header />
-     <Meals />
-     <Cart />
-     <Checkout />
-    </CartContextProvider>
-    </UserProgressProvider>
+    <BrowserRouter>
+      <UserProgressProvider>
+        <CartContextProvider>
+          <Header /> 
+          <Routes>
+            <Route 
+              path="/" 
+              element={isLoggedIn ? <Meals /> : <Login onLogin={() => setIsLoggedIn(true)} />} 
+            />
+            <Route path="/cart" element={isLoggedIn ? <Cart /> : <Login onLogin={() => setIsLoggedIn(true)} />} />
+            <Route path="/checkout" element={isLoggedIn ? <Checkout /> : <Login onLogin={() => setIsLoggedIn(true)} />} />
+          </Routes>
+          <Cart/>
+          {/* <Subscriptions /> */}
+          <Checkout/>
+          
+        </CartContextProvider>
+      </UserProgressProvider>
+    </BrowserRouter>
   );
 }
 

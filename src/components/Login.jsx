@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 
+
 const Login = ({ onLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -18,6 +19,8 @@ const Login = ({ onLogin }) => {
 
   return (
     <div>
+      <div className="login-form"> {/* Add the namespacing class */}
+        <div className="login-container"> {/* Update with class */}
       <h2>Login</h2>
       <form onSubmit={handleLogin}>
         <div>
@@ -42,6 +45,8 @@ const Login = ({ onLogin }) => {
         </div>
         <button type="submit">Login</button>
       </form>
+      </div>
+      </div>
     </div>
   );
 };

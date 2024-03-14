@@ -7,7 +7,7 @@ import { UserProgressProvider } from './store/UserProgressContext';
 import Cart from './components/Cart';
 import Checkout from './components/Checkout';
 import Login from './components/Login';
-// import Subscriptions from './components/Sub'
+import SignUp from './components/SignUp'; // Import the SignUp component
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Simulating authentication
@@ -24,11 +24,10 @@ function App() {
             />
             <Route path="/cart" element={isLoggedIn ? <Cart /> : <Login onLogin={() => setIsLoggedIn(true)} />} />
             <Route path="/checkout" element={isLoggedIn ? <Checkout /> : <Login onLogin={() => setIsLoggedIn(true)} />} />
+            <Route path="/signup" element={<SignUp />} /> {/* Define route for the sign-up page */}
           </Routes>
           <Cart/>
-          {/* <Subscriptions /> */}
           <Checkout/>
-          
         </CartContextProvider>
       </UserProgressProvider>
     </BrowserRouter>

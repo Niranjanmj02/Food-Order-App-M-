@@ -35,6 +35,13 @@ const SignUp = ({ onSignUp }) => {
     <div>
       <style>
         {`
+          .header {
+            text-align: center;
+            font-size: 24px;
+            color: #230d46; /* Cream */
+            margin-bottom: 20px;
+          }
+
           .signup-form {
             display: flex;
             justify-content: center;
@@ -100,6 +107,7 @@ const SignUp = ({ onSignUp }) => {
           }
         `}
       </style>
+      <div className="header">Welcome To FooDilie</div>
       <div className="signup-form">
         <div className="signup-container">
           <h2>Sign Up</h2>
@@ -155,7 +163,7 @@ const SignUp = ({ onSignUp }) => {
               />
             </div>
             <button type="submit">Sign Up</button>
-            {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
+            {errorMessage && <div className="error-message">{errorMessage}</div>}
           </form>
         </div>
       </div>

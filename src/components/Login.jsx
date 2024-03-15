@@ -24,6 +24,13 @@ const Login = ({ onLogin }) => {
     <div>
       <style>
         {`
+          .header {
+            text-align: center;
+            font-size: 24px;
+            color: #230d46;
+            margin-bottom: 20px;
+          }
+
           .login-form {
             display: flex;
             justify-content: center;
@@ -99,6 +106,7 @@ const Login = ({ onLogin }) => {
           }
         `}
       </style>
+      <div className="header">Welcome To FooDilie</div>
       <div className="login-form">
         <div className="login-container">
           <h2>Login</h2>

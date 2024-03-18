@@ -1,23 +1,34 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 
-const Login = ({ onLogin }) => {
+const SignUp = ({ onSignUp }) => {
+  const [name, setName] = useState('');
+  const [contact, setContact] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleLogin = (e) => {
+  const handleSignUp = (e) => {
     e.preventDefault();
-    // Perform validation here if needed
-    // For simplicity, let's assume validation passes
-    // You can also add more robust validation logic
 
-    // Call onLogin prop with email and password
-    onLogin(email, password);
-  };
+    // Basic form validation
+    if (!name || !contact || !email || !password || !confirmPassword) {
+      setErrorMessage('All fields are required');
+      return;
+    }
 
-  const handleSignIn = () => {
-    // Handle sign-in logic here
-    console.log("Redirecting to sign-up page...");
+    if (!/^\d{10}$/i.test(contact)) {
+      setErrorMessage('Contact number must be 10 digits');
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setErrorMessage('Passwords do not match');
+      return;
+    }
+
+    // Call onSignUp prop with user data
+    onSignUp({ name, contact, email, password });
   };
 
   return (
@@ -27,11 +38,11 @@ const Login = ({ onLogin }) => {
           .header {
             text-align: center;
             font-size: 24px;
-            color: #230d46;
+            color: #230d46; /* Cream */
             margin-bottom: 20px;
           }
 
-          .login-form {
+          .signup-form {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -40,7 +51,7 @@ const Login = ({ onLogin }) => {
             color: #f5e1f0; /* Cream */
           }
 
-          .login-container {
+          .signup-container {
             background-color: #5c4274; /* Darker Violet */
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -48,26 +59,26 @@ const Login = ({ onLogin }) => {
             width: 300px;
           }
 
-          .login-container h2 {
+          .signup-container h2 {
             text-align: center;
             color: #f5e1f0; /* Cream */
           }
 
-          .login-container form {
+          .signup-container form {
             display: flex;
             flex-direction: column;
           }
 
-          .login-container form div {
+          .signup-container form div {
             margin-bottom: 10px;
           }
 
-          .login-container form label {
+          .signup-container form label {
             font-weight: bold;
             color: #f5e1f0; /* Cream */
           }
 
-          .login-container form input {
+          .signup-container form input {
             padding: 8px;
             border: 1px solid #f5e1f0; /* Cream */
             border-radius: 4px;
@@ -75,7 +86,7 @@ const Login = ({ onLogin }) => {
             color: #333; /* Dark Gray */
           }
 
-          .login-container form button {
+          .signup-container form button {
             padding: 10px 20px;
             background-color: #230d46; /* Dark Violet */
             color: #f5e1f0; /* Cream */
@@ -85,32 +96,42 @@ const Login = ({ onLogin }) => {
             transition: background-color 0.3s;
           }
 
-          .login-container form button:hover {
+          .signup-container form button:hover {
             background-color: #402657; /* Darker Violet */
           }
 
-          .sign-in-message {
+          .error-message {
+            color: red;
             text-align: center;
             margin-top: 10px;
-            color: #f5e1f0; /* Cream */
-          }
-
-          .sign-in-message a {
-            color: #f5e1f0; /* Cream */
-            text-decoration: underline;
-            cursor: pointer;
-          }
-
-          .sign-in-message a:hover {
-            text-decoration: none;
           }
         `}
       </style>
       <div className="header">Welcome To FooDilie</div>
-      <div className="login-form">
-        <div className="login-container">
-          <h2>Login</h2>
-          <form onSubmit={handleLogin}>
+      <div className="signup-form">
+        <div className="signup-container">
+          <h2>Sign Up</h2>
+          <form onSubmit={handleSignUp}>
+            <div>
+              <label htmlFor="name">Name:</label>
+              <input
+                type="text"
+                id="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="contact">Contact:</label>
+              <input
+                type="text"
+                id="contact"
+                value={contact}
+                onChange={(e) => setContact(e.target.value)}
+                required
+              />
+            </div>
             <div>
               <label htmlFor="email">Email:</label>
               <input
@@ -131,15 +152,23 @@ const Login = ({ onLogin }) => {
                 required
               />
             </div>
-            <button type="submit">Login</button>
+            <div>
+              <label htmlFor="confirmPassword">Confirm Password:</label>
+              <input
+                type="password"
+                id="confirmPassword"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+              />
+            </div>
+            <button type="submit">Sign Up</button>
+            {errorMessage && <div className="error-message">{errorMessage}</div>}
           </form>
-          <div className="sign-in-message">
-            Don't have an account? <Link to="/signup">Sign up</Link>
-          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default SignUp;

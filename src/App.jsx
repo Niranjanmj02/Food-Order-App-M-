@@ -7,28 +7,27 @@ import { UserProgressProvider } from './store/UserProgressContext';
 import Cart from './components/Cart';
 import Checkout from './components/Checkout';
 import Login from './components/Login';
-// import Subscriptions from './components/Sub'
+import SignUp from './components/Signup';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Simulating authentication
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
     <BrowserRouter>
       <UserProgressProvider>
         <CartContextProvider>
-          <Header /> 
+        {isLoggedIn && <Header />}  
           <Routes>
-            <Route 
+          <Route 
               path="/" 
               element={isLoggedIn ? <Meals /> : <Login onLogin={() => setIsLoggedIn(true)} />} 
-            />
+              />
             <Route path="/cart" element={isLoggedIn ? <Cart /> : <Login onLogin={() => setIsLoggedIn(true)} />} />
             <Route path="/checkout" element={isLoggedIn ? <Checkout /> : <Login onLogin={() => setIsLoggedIn(true)} />} />
+            <Route path="/signup" element={<SignUp />} />
           </Routes>
           <Cart/>
-          {/* <Subscriptions /> */}
           <Checkout/>
-          
         </CartContextProvider>
       </UserProgressProvider>
     </BrowserRouter>

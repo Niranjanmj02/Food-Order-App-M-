@@ -5,6 +5,7 @@ import CartContext from '../store/CartContext.jsx';
 
 export default function MealItem({ meal }) {
   const cartCtx = useContext(CartContext);
+
   const [isSubscribed, setIsSubscribed] = useState(false);
 
   function handleAddMealToCart() {
@@ -12,9 +13,10 @@ export default function MealItem({ meal }) {
   }
 
 
-  function handleSubscribe() {
-    setIsSubscribed(true); 
-    console.log(`User subscribed to meal: ${meal.name}`); 
+  function handleSubs() {
+    //setIsSubscribed(true); 
+    //console.log(`User subscribed to meal: ${meal.name}`);
+     
     
   }
 
@@ -29,9 +31,7 @@ export default function MealItem({ meal }) {
            </div>
            <p className="meal-item-actions">
           <Button onClick={handleAddMealToCart}>Add to Cart</Button>
-          <Button onClick={handleSubscribe} disabled={isSubscribed}>
-            {isSubscribed ? 'Subscribed!' : 'Subscribe'}
-          </Button>
+          
         </p>
       </article>
     </li>
